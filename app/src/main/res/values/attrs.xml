@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RadioButtonCenter">
+        <attr name="drawable" format="reference"/>
+    </declare-styleable>
+    <declare-styleable name="RadialRadioButton">
+        <attr name="text" format="string"/>
+        <attr name="colorPoint" format="color"/>
+        <attr name="checkable" format="boolean"/>
+        <attr name="radiusPoint" format="dimension"/>
+        <attr name="radiusSelector" format="dimension"/>
+        <attr name="colorSelector" format="color"/>
+        <attr name="buttonTextSize" format="dimension"/>
+    </declare-styleable>
+    <declare-styleable name="BasicCustomView">
+        <attr name="drawable2" format="reference"/>
+    </declare-styleable>
+</resources>

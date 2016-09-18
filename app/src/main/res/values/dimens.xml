@@ -2,4 +2,11 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="radiobutton_default_minimum_radius">8dp</dimen>
+    <dimen name="radiobutton_default_minimum_radius_selector">10dp</dimen>
+    <dimen name="radiobutton_default_minimum_textsize">12sp</dimen>
+    <dimen name="radiobutton_text_margin_top">8dp</dimen>
+    <dimen name="radiobutton_shape_min_padding">2dp</dimen>
+    <dimen name="radiobutton_default_stroke_width">2dp</dimen>
+    <dimen name="douze_sp">12sp</dimen>
 </resources>
