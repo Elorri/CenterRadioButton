@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">RadioButtonCenterImage</string>
+    <string name="standard_camera_directory">/dcim/</string>
+    <string name="date_format">MMM</string>
+    <string name="image_name_prefix">IMG_</string>
+    <string name="image_name_suffix">.%s</string>
+    <string name="nebo_album">nebo</string>
 </resources>

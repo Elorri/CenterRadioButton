@@ -126,7 +126,7 @@ public class AddBlockFragmentNoGallery extends Fragment implements View.OnClickL
         //Create a file where we will store the capture result
         mCaptureImageFileName = FileUtils.createImageFileName(mResources);
         mCaptureImageMimeType = getResources().getString(R.string.default_image_mimetype);
-        //We create the file in Gallery directory because the camera app does not have access to our private cache. We will later create a new file from the resulted bitmap and store it in our app local cache.
+        //We create the file in Gallery directory because the camera app does not have access to our private cache, see https://developer.android.com/guide/topics/data/data-storage.html#filesInternal. We will later create a new file from the resulted bitmap and store it in our app local cache.
         try {
             mCaptureImageFile = FileUtils.createImageFileInAppGalleryDirectory(mContext, mCaptureImageFileName, mCaptureImageMimeType);
         } catch (IOException e) {
@@ -202,7 +202,7 @@ public class AddBlockFragmentNoGallery extends Fragment implements View.OnClickL
     private File resizeImageFile(File file) {
         int targetH = mCallback.getTargetImageViewHeight();
         int targetW = mCallback.getTargetImageViewWidth();
-        FileUtils.scaleToImageViewSize(file, targetW, targetH);
+        FileUtils.resizeImageFile(file, targetW, targetH);
         return file;
     }
 

@@ -72,7 +72,7 @@ public class BasicCustomView extends View {
                 + "getHeight " + MainActivity.convertPixelsToDp(canvas.getHeight(), getContext())
                 + " getWidth " + MainActivity.convertPixelsToDp(canvas.getWidth(), getContext()));
 
-        //We set the canvas to be the exact size of our drawble. Our drawable can now draw itself
+        //We set the canvas to be the exact size of our drawable. Our drawable can now draw itself
         // on it and be completely visible.
         int left = paddingLeft;
         int top = paddingTop;
