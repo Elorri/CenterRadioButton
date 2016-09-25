@@ -200,6 +200,58 @@ public class RadialRadioButton extends RadioButton
         requestLayout();
     }
 
+
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
+    {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+
+        //Get the sizes of the available space or the equivalent pixel of the xml layout_width and layout _height
+        measuredWidthInPx = getMeasuredWidth();
+        measureHeightInPx = getMeasuredHeight();
+
+        minDiameterCirclesInPx = Math.max(radiusPointInPx * 2, radiusSelectorInPx * 2);
+        if (text != null)
+        {
+            setTextPaint();
+            Rect textBounds = new Rect();
+            textPaint.getTextBounds(text, 0, text.length(), textBounds);
+            textHeight = textBounds.height();
+            textWidth = textBounds.width();
+            minShapeWidth = Math.max(minDiameterCirclesInPx, textWidth);
+            minShapeHeight = minDiameterCirclesInPx + textHeight + textMarginTopInPx;
+        }
+        else
+        {
+            minShapeWidth = minDiameterCirclesInPx;
+            minShapeHeight = minDiameterCirclesInPx;
+        }
+        ViewGroup.LayoutParams layoutParams = getLayoutParams();
+        if (layoutParams.height == ViewGroup.LayoutParams.WRAP_CONTENT)
+        {
+            measureHeightInPx = minShapeHeight + shapeMinPaddingInPx;
+        }
+        if (layoutParams.width == ViewGroup.LayoutParams.WRAP_CONTENT)
+        {
+            measuredWidthInPx = minShapeWidth + shapeMinPaddingInPx;
+        }
+
+        if (text != null)
+        {
+            centerShapeX = Math.max(minShapeWidth / 2, measuredWidthInPx / 2);
+            centerYcircles = (minDiameterCirclesInPx / 2) + ((measureHeightInPx - minShapeHeight) / 2);
+        }
+        else
+        {
+            centerShapeX = Math.max(minDiameterCirclesInPx / 2, measuredWidthInPx / 2);
+            centerYcircles = (minDiameterCirclesInPx / 2) + ((measureHeightInPx - minShapeHeight) / 2);
+        }
+        setMeasuredDimension(Math.round(measuredWidthInPx), Math.round(measureHeightInPx));
+    }
+
+
+
     @Override
     protected void onDraw(Canvas canvas)
     {
@@ -272,51 +324,4 @@ public class RadialRadioButton extends RadioButton
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, displayMetrics);
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
-    {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
-        //Get the sizes of the available space or the equivalent pixel of the xml layout_width and layout _height
-        measuredWidthInPx = getMeasuredWidth();
-        measureHeightInPx = getMeasuredHeight();
-
-        minDiameterCirclesInPx = Math.max(radiusPointInPx * 2, radiusSelectorInPx * 2);
-        if (text != null)
-        {
-            setTextPaint();
-            Rect textBounds = new Rect();
-            textPaint.getTextBounds(text, 0, text.length(), textBounds);
-            textHeight = textBounds.height();
-            textWidth = textBounds.width();
-            minShapeWidth = Math.max(minDiameterCirclesInPx, textWidth);
-            minShapeHeight = minDiameterCirclesInPx + textHeight + textMarginTopInPx;
-        }
-        else
-        {
-            minShapeWidth = minDiameterCirclesInPx;
-            minShapeHeight = minDiameterCirclesInPx;
-        }
-        ViewGroup.LayoutParams layoutParams = getLayoutParams();
-        if (layoutParams.height == ViewGroup.LayoutParams.WRAP_CONTENT)
-        {
-            measureHeightInPx = minShapeHeight + shapeMinPaddingInPx;
-        }
-        if (layoutParams.width == ViewGroup.LayoutParams.WRAP_CONTENT)
-        {
-            measuredWidthInPx = minShapeWidth + shapeMinPaddingInPx;
-        }
-
-        if (text != null)
-        {
-            centerShapeX = Math.max(minShapeWidth / 2, measuredWidthInPx / 2);
-            centerYcircles = (minDiameterCirclesInPx / 2) + ((measureHeightInPx - minShapeHeight) / 2);
-        }
-        else
-        {
-            centerShapeX = Math.max(minDiameterCirclesInPx / 2, measuredWidthInPx / 2);
-            centerYcircles = (minDiameterCirclesInPx / 2) + ((measureHeightInPx - minShapeHeight) / 2);
-        }
-        setMeasuredDimension(Math.round(measuredWidthInPx), Math.round(measureHeightInPx));
-    }
 }
