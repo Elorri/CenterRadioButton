@@ -209,8 +209,7 @@ public class AddBlockFragmentNoGallery extends Fragment implements View.OnClickL
                 if (resultCode == getActivity().RESULT_OK) {
                     Uri imageUri = data.getData();
                     getImageNameMimetypeAndSize(imageUri);
-                    addBlockPickedImage(Uri.fromFile(mPickImageFile).toString(),
-                            mPickImageFileName, mPickImageMimeType);
+                    addBlockPickedImage(mPickImageFile, mPickImageFileName, mPickImageMimeType);
                 }
                 break;
             default:
@@ -322,7 +321,8 @@ public class AddBlockFragmentNoGallery extends Fragment implements View.OnClickL
     }
 
 
-    private void addBlockPickedImage(String pickImageFileName, String imagePath, String mimeType) {
+    private void addBlockPickedImage(File pickImageFile, String pickImageFileName, String mimeType) {
+        String imagePath = Uri.fromFile(pickImageFile).toString();
         mCallback.addBlock(BitmapFactory.decodeFile(imagePath));
         mCallback.createObjectBlock(SKETCH_BACKEND_ID, pickImageFileName, imagePath, mimeType);
     }
